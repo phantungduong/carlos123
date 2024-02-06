@@ -1,1 +1,54 @@
-hello
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Võ Minh Tú !</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        #date, #countdown {
+            font-size: 30px;
+        }
+        #time {
+            font-size: 40px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="date"></div>
+    <div id="time"></div>
+    <div id="countdown"></div>
+
+    <script>
+        function updateClock() {
+            var now = new Date();
+            var tet = new Date(2024, 1, 10); 
+            var diff = tet - now; 
+
+            var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            var dateString = now.toLocaleDateString('vi-VN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            var timeString = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
+
+            document.getElementById('date').innerHTML = dateString;
+            document.getElementById('time').innerHTML = timeString;
+            document.getElementById('countdown').innerHTML = "Còn " + days + " ngày " + hours + " giờ " + minutes + " phút " + seconds + " giây nữa là đến Tết 2024";
+            document.title = timeString;
+        }
+        setInterval(updateClock, 1000); 
+    </script>
+</body>
+</html>
